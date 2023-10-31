@@ -1,32 +1,17 @@
 version: 2
 
 sources:
-  - name: gz_raw_data
+  - name: raw
+    schema: gz_raw_data
     tables:
-      - name: gz_raw_sals
+      - name: sales
         description: Sales Table
-        identifier: sales
-      - name: gz_raw_product
+        identifier: raw_gz_sals
+      - name: product
         description: Product Table
-        identifier: product
+        identifier: gz_raw_product
 
-      - name: gz_raw_ship
+      - name: ship
         description: Ship Table
-        identifier: ship
+        identifier: raw_gz_ship
 
-
-models:
-  - name: my_model
-    description: My dbt model
-    columns:
-      - name: column1
-        description: My first column
-        data_type: string
-    database: my_db
-    schema: my_schema
-    tags: ["tag"]
-    unique_key: []
-    meta: {}
-
-    # Reference the source
-    source: raw_gz_sales
