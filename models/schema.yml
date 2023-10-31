@@ -6,10 +6,10 @@ sources:
     tables:
       - name: sales
         description: Sales Table
-        identifier: raw_gz_sals
+        identifier: gz_raw_sals
       - name: product
         description: Product Table
-        identifier: gz_raw_product
+        identifier: raw_gz_product
 
       - name: ship
         description: Ship Table
