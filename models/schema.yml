@@ -2,31 +2,39 @@ version: 2
 
 sources:
   - name: gz_raw_data
+    description: greenweez raw data 
     tables:
-      - name: gz_raw_sals
-        description: Sales Table
-        identifier: sales
-      - name: gz_raw_product
-        description: Product Table
-        identifier: product
-
-      - name: gz_raw_ship
-        description: Ship Table
-        identifier: ship
-
-
-models:
-  - name: my_model
-    description: My dbt model
-    columns:
-      - name: column1
-        description: My first column
-        data_type: string
-    database: my_db
-    schema: my_schema
-    tags: ["tag"]
-    unique_key: []
-    meta: {}
-
-    # Reference the source
-    source: raw_gz_sales
+      - name: sales
+        identifier: gz_raw_sals
+        description: sales of Greenweez / we have one row per productid found in each order_id
+        columns:
+          - name: date_date
+            description: the date of purchase  
+          - name: order_id
+            description: foreign key to ship 
+          - name: pdt_id
+            description: foreign key to product 
+          - name: revenue
+            description: the amount paid by the customer to purchase the product. revenue = quantity * selling_price 
+          - name: quantity
+            description: the quantity of products purchased for this order  
+      - name: product
+        identifier: raw_gz_product
+        description: products of Greenweez
+        columns:
+          - name: product_id
+            description: primary key of the table  
+          - name: purchase_price
+            description: the purchase price of the product 
+      - name: ship
+        identifier: raw_gz_ship
+        description: ship of Greenweez
+        columns:
+          - name: order_id
+            description: primary key of the table 
+          - name: shipping_fee
+            description: the price the customer pays for shipping 
+          - name: log_cost
+            description: the cost of preparing the parcel in the warehouse 
+          - name: ship_costs
+            description: the shipping cost paid by Greenweez to the carrier/transporter  
